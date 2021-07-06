@@ -1,5 +1,5 @@
 # Table of contents
 
 * [Initial page](README.md)
-* [BFS](bfs.md)
+* [Chapter 3. BFS](bfs.md)
 
