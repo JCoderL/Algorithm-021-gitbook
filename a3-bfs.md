@@ -16,6 +16,8 @@ description: BFS、Breath First Search、宽度优先搜索、广度优先搜索
 
 ### 理论篇
 
+BFS，是 Breath First Search 的缩写，中文名称为“宽度优先搜索”，亦称“广度优先搜索”。是一个基础且经典的图论算法，在很多高级图论算法中都或多或少的有 BFS 的影子，例如 Dijkstra，Prim，SPFA 等。
+
 在理解 BFS 的流程之前，不妨先从名称剖析这个算法：
 
 * S：即搜索，“搜索算法”是一种**无目的的、盲目的**算法，换句话说，算法本身不考虑所寻找的目标是否真的存在，但是只要找到了所有的可能（彻底寻找整个图），就能判断所寻找的目标是否存在。
@@ -24,8 +26,6 @@ description: BFS、Breath First Search、宽度优先搜索、广度优先搜索
 ![](.gitbook/assets/bfs-on-matrix.gif)
 
 ### 逻辑篇
-
-BFS，是 Breath First Search 的缩写，中文名称为“宽度优先搜索”，亦称“广度优先搜索”。是一个基础且经典的图论算法，在很多高级图论算法中都或多或少的有 BFS 的影子，例如 Dijkstra，Prim，SPFA 等。
 
 在上文中介绍了 BFS 算法的名称以及含义，下面将进行算法逻辑的介绍：
 
