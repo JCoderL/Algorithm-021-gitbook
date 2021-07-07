@@ -128,9 +128,9 @@ print(" -> ".join(traverse(head)))
 此种插入方法的实现同样是基于遍历，由于需要知道链表插入的位置，所以需要额外设置一个计数器：
 
 ```python
-# 在虚头节点为 head 的链表的第 index 个节点后，插入一个值为 new_val 的节点
+# 在虚头节点为 head 的链表的第 index 个节点后面插入一个值为 new_val 的节点
 def insert_by_index(head, index, new_val):
-    # 跳过虚头节点，如果不写这行可以把 cnt 初始化为 0
+    # 跳过虚头节点，如果不写这行的话可以把 cnt 初始化为 0
     node = head.next
     cnt = 1
     while node.next and cnt != index:
@@ -152,13 +152,44 @@ def insert_by_index(head, index, new_val):
 # 调用与比较
 # 原链表为 1 -> 2 -> 3 -> 4
 print(" -> ".join(traverse(head)))
-# 在第 3 个节点后插入值为 5 的节点
+# 在第 3 个节点后面插入值为 5 的节点
 insert_by_index(head, 3, 5)
 # 新链表为 1 -> 2 -> 3 -> 5 -> 4
 print(" -> ".join(traverse(head)))
 ```
 
-有的时候链表还有另一种插入方式：在遇到的第一个特定值的节点后插入。
+有的时候链表还有另一种插入方式：在遇到的第一个特定值的节点后插入。实现如下：
+
+```python
+# 在虚头节点为 head 的链表的第一个值为 val 的节点后面插入一个值为 new_val 的节点
+def insert_by_value(head, val, new_val):
+    # 跳过虚头节点，如果不写这行的话虚头节点的值一定不要等于 val
+    node = head.next
+    while node.next and node.val != val:
+        node = node.next
+
+    # 遍历结束都没找到 val 就代表链表里没有符合插入的位置
+    if node.val != val:
+        return False
+    
+    # 一定要记住：先修改新节点的 next
+    new_node = ListNode(new_val)
+    new_node.next = node.next
+    node.next = new_node
+    
+    return True
+
+
+# 调用与比较
+# 原链表为 1 -> 2 -> 3 -> 4
+print(" -> ".join(traverse(head)))
+# 在第一个值为 2 的节点后面插入值为 5 的节点
+insert_by_value(head, 2, 5)
+# 新链表为 1 -> 2 -> 5 -> 3 -> 4
+print(" -> ".join(traverse(head)))
+```
+
+当然，链表插入的方式还有很多，毕竟题都是人出的。比如在前两个节点后各插入一个新节点，在偶数节点后面插入，在所有特定值节点后插入等等。虽然看似天花乱坠，实则都是基于以上两种插入方式实现（**按特定位置插入**以及**按特定值插入**），在学习时应举一反三，尝试自己实现多种插入方式。
 
 ### 练习篇
 
