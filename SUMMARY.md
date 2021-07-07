@@ -1,5 +1,6 @@
 # Table of contents
 
 * [Change Log](README.md)
-* [Chapter 3. BFS](bfs.md)
+* [Untitled](untitled.md)
+* [Chapter A3. BFS](bfs.md)
 

@@ -2,7 +2,7 @@
 description: BFS、Breath First Search、宽度优先搜索、广度优先搜索
 ---
 
-# Chapter 3. BFS
+# Chapter A3. BFS
 
 ### 引导问题
 
