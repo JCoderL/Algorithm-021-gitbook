@@ -101,7 +101,7 @@ print(" -> ".join(result))
 ```python
 # 把虚头节点为 head 的链表的第 index 个节点的值修改为 new_val
 def update_by_index(head, index, new_val):
-    # 跳过虚头节点
+        # 跳过虚头节点
     node = head.next
     cnt = 1
     while node.next and cnt != index:
@@ -125,11 +125,69 @@ update_by_index(head, 2, 5)
 print(" -> ".join(traverse(head)))
 ```
 
+按值更新可以有很多方式，此处介绍两种：更新所有值，以及更新第一个值。
 
+更新所有值：
+
+```python
+# 把虚头节点为 head 的链表中的所有节点值为 val 的节点修改为 new_val
+def update_by_value_all(head, val, new_val):
+    # 跳过虚头节点
+    node = head.next
+    while node.next:
+        if node.val == val:
+            node.val = new_val
+        node = node.next
+    
+    # 最后一个点也要判断
+    if node.val == val:
+        node.val = new_val
+
+
+# 调用与比较
+# 原链表为 1 -> 2 -> 3 -> 1
+print(" -> ".join(traverse(head)))
+# 把链表中的所有 1 都改为 5
+update_by_value_all(head, 1, 5)
+# 新链表为 5 -> 2 -> 3 -> 5
+print(" -> ".join(traverse(head)))
+```
+
+更新第一个值：
+
+```python
+# 把虚头节点为 head 的链表中最靠前的节点值为 val 的节点修改为 new_val
+def update_by_value(head, val, new_val):
+    # 跳过虚头节点
+    node = head.next
+    while node.next:
+        if node.val == val:
+            node.val = new_val
+            return True
+        
+        node = node.next
+        
+    # 最后一个点也要判断
+    if node.val == val:
+        node.val = new_val
+        return True
+    
+    # 没找到任何值为 val 的节点
+    return False
+    
+    
+# 调用与比较
+# 原链表为 1 -> 2 -> 3 -> 1
+print(" -> ".join(traverse(head)))
+# 把链表中的第一个 1 改为 5
+update_by_value(head, 1, 5)
+# 新链表为 5 -> 2 -> 3 -> 1
+print(" -> ".join(traverse(head)))
+```
 
 #### 链表的插入
 
-链表的插入一般分为两种，其一为“尾插”，也就是在整个链表的尾部插入一个新的节点；其二为“指定位置的插入”，比如“在链表的第三个节点后面插入一个新的节点”等等。
+链表的插入一般分为两种，其一为“尾插”，也就是在整个链表的尾部插入一个新的节点；其二为“按条件的插入”，与链表修改类似，按条件插入也分为按值插入以及按位置插入。比如“在链表的第三个节点后面插入”，“在第一个值为 5 的节点后插入”等等。
 
 链表的尾插基本和遍历所差无几，通过遍历找到最后一个点，然后将该节点的 next 指向新的链表节点就可以了：
 
@@ -150,7 +208,7 @@ insert_to_tail(head, 5)
 print(" -> ".join(traverse(head)))
 ```
 
-在指定位置插入节点相对复杂，并且也涉及到一个在链表的操作中非常容易出现的错误：**链表的丢失**。
+按位置插入节点相对复杂，并且也涉及到一个在链表的操作中非常容易出现的错误：**链表的丢失**。
 
 因为在链表中，想得到链表中的某个节点，只能通过它的前驱节点得到（若 node1.next = node2，则称 node1 为 node2 的**前驱节点**，也称 node2 为 node1 的**后继节点**），如果操作顺序不当，会导致某一段链表失去前驱节点，那么这一段链表就彻底找不到了，错误演示如下（将 1 -&gt; 2 -&gt; 3 变成 1 -&gt; 2 -&gt; 4 -&gt; 3）：
 
